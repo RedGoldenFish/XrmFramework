@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XrmFramework.DeployUtils.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmFramework.RemoteDebugger.Client.Tests", "Tests\XrmFramework.RemoteDebugger.Client.Tests\XrmFramework.RemoteDebugger.Client.Tests.csproj", "{90CFEA72-64A0-47D7-8D17-D45F65B8B68C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCloner", "SolutionCloner\SolutionCloner.csproj", "{A8817289-4709-4CE8-B8C5-89B7499B6467}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,6 +146,10 @@ Global
 		{90CFEA72-64A0-47D7-8D17-D45F65B8B68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90CFEA72-64A0-47D7-8D17-D45F65B8B68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90CFEA72-64A0-47D7-8D17-D45F65B8B68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8817289-4709-4CE8-B8C5-89B7499B6467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8817289-4709-4CE8-B8C5-89B7499B6467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8817289-4709-4CE8-B8C5-89B7499B6467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8817289-4709-4CE8-B8C5-89B7499B6467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

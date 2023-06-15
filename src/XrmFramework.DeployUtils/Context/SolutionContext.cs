@@ -23,12 +23,12 @@ namespace XrmFramework.DeployUtils.Context
 
             SolutionName = settings.Value.PluginSolutionUniqueName;
         }
-        private readonly IRegistrationService _service;
+        protected readonly IRegistrationService _service;
 
         #region Private fields implementing the interface
-        private Solution _solution;
+        protected Solution _solution;
         private Publisher _publisher;
-        private readonly List<SolutionComponent> _components = new();
+        protected readonly List<SolutionComponent> _components = new();
         private readonly List<SdkMessageFilter> _filters = new();
         private readonly Dictionary<Messages, EntityReference> _messages = new();
         private readonly Dictionary<string, Guid> _users = new();
@@ -91,7 +91,7 @@ namespace XrmFramework.DeployUtils.Context
         }
 
         /// <summary>Retrieves and store the <see cref="Solution"/> field</summary>
-        private void InitSolution()
+        protected void InitSolution(bool endIfManaged = true)
         {
             var query = new QueryExpression(SolutionDefinition.EntityName);
             query.ColumnSet.AllColumns = true;
@@ -106,7 +106,7 @@ namespace XrmFramework.DeployUtils.Context
                 Console.ReadKey();
                 System.Environment.Exit(1);
             }
-            else if (_solution.GetAttributeValue<bool>(SolutionDefinition.Columns.IsManaged))
+            else if (endIfManaged && _solution.GetAttributeValue<bool>(SolutionDefinition.Columns.IsManaged))
             {
                 Console.WriteLine("The solution {0} is managed in the CRM, modify App.config to point to a development environment.", SolutionName);
                 System.Environment.Exit(1);
@@ -120,7 +120,7 @@ namespace XrmFramework.DeployUtils.Context
         }
 
         /// <summary>Retrieves and store the <see cref="Components"/> field</summary>
-        private void InitComponents()
+        protected void InitComponents()
         {
             var query = new QueryExpression(SolutionComponentDefinition.EntityName);
             query.ColumnSet.AllColumns = true;
@@ -253,7 +253,7 @@ namespace XrmFramework.DeployUtils.Context
 
         public SolutionComponent GetComponentByObjectRef(EntityReference objectRef)
         {
-            return _components.FirstOrDefault(c => c.ObjectId.Equals(objectRef.Id));
+            return _components.Find(c => c.ObjectId.Equals(objectRef.Id));
         }
 
         public EntityReference GetMessage(Messages message)
@@ -263,7 +263,7 @@ namespace XrmFramework.DeployUtils.Context
 
         public EntityReference GetMessageFilter(Messages message, string entityName)
         {
-            return _filters.FirstOrDefault(f =>
+            return _filters.Find(f =>
                 f.SdkMessageId.Name == message.ToString()
                 && f.PrimaryObjectTypeCode == entityName)
                 ?.ToEntityReference();
