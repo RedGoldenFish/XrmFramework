@@ -189,7 +189,7 @@ public class SolutionClonerService : SolutionContext
 			{
 				["name"] = sourceComponent[StashNameField],
 				[StashSolutionIdsField] = new List<Guid>(),
-				[StashSolutionNamesField] = new List<string>(),
+				[StashSolutionNamesField] = new List<string>(){"Entity does not exist in target environment"}
 			};
 		}
 		
